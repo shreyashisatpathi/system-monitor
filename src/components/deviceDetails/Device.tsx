@@ -1,5 +1,5 @@
 import type { Device, Vulnerability } from '@/type';
-import VulnerabilityList from '../VulnerabilityList/VulnerabilityList';
+import VulnerabilityList from '../vulnerabilityList/VulnerabilityList';
 
 
 interface DeviceDetailsProps {
