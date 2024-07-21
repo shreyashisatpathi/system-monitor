@@ -18,16 +18,8 @@ interface DevicesProps {
   devices: Device[];
 }
 const Home: React.FC<DevicesProps> = ({ devices }) => {
-const [sortByDevice ,setSortByDevice] = useState<string>('');
-const [filteredDevice,setFilteredDevice] = useState<Device[]>([]);
-
-
-  return (
-    <div>
-      <h1>Home page</h1>
-      <DeviceList devices={devices} />
-    </div>
-  );
+  
+  return <DeviceList devices={devices} />
 };
 
 export const getServerSideProps = async () => {

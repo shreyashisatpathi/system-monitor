@@ -1,3 +1,4 @@
+import { exportHandler } from '@/utils/exportToCSVFile';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -25,10 +26,12 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
     });
     setSortedDevices(sortedDevices);
   };
+  
 
   return (
     <div>
       <h1>Device List</h1>
+      <button onClick={()=>exportHandler(sortedDevices)}>Export to CSV</button>
       <table>
         <thead>
           <tr>
