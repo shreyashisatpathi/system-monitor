@@ -1,7 +1,7 @@
 import { exportHandler } from '@/utils/exportToCSVFile';
 import Link from 'next/link';
 import { useState } from 'react';
-
+import { Checkbox } from '@mantine/core';
 interface Device {
   oid: string;
   ipv4: string;
@@ -16,8 +16,9 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
   if (!devices || devices.length === 0) {
     return <div>No devices available</div>;
   }
-  const [sortedDevices, setSortedDevices] = useState<Device[]>(devices);
 
+  const [sortedDevices, setSortedDevices] = useState<Device[]>(devices);
+  const [checked, setChecked] = useState<String[]>([]);
   const sortDevices = (key: keyof Device) => {
     const sortedDevices = [...devices].sort((a, b) => {
       if (a[key] < b[key]) return -1;
@@ -26,15 +27,25 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
     });
     setSortedDevices(sortedDevices);
   };
-  
+  console.log(checked);
+  const toggleCheckBoxHandler = (oid: string) => {
+    if (checked.includes(oid)) {
+      setChecked(checked.filter((item) => item !== oid));
+    } else {
+      setChecked([...checked, oid]);
+    }
+  };
 
   return (
     <div>
       <h1>Device List</h1>
-      <button onClick={()=>exportHandler(sortedDevices, 'Device')}>Export to CSV</button>
+      <button onClick={() => exportHandler(sortedDevices, 'Device')}>
+        Export to CSV
+      </button>
       <table>
         <thead>
           <tr>
+            <th></th>
             <th onClick={() => sortDevices('ipv4')}>IPv4 Address</th>
             <th onClick={() => sortDevices('hostname')}>Hostname</th>
             <th onClick={() => sortDevices('operatingSystem')}>
@@ -47,6 +58,12 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
         <tbody>
           {sortedDevices.map((device) => (
             <tr key={device.oid}>
+              <td>
+                <Checkbox
+                  checked={checked.includes(device.oid)}
+                  onChange={() => toggleCheckBoxHandler(device.oid)}
+                />
+              </td>
               <td>{device.ipv4}</td>
               <td>{device.hostname}</td>
               <td>{device.operatingSystem}</td>
