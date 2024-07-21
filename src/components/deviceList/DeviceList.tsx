@@ -31,7 +31,7 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
   return (
     <div>
       <h1>Device List</h1>
-      <button onClick={()=>exportHandler(sortedDevices)}>Export to CSV</button>
+      <button onClick={()=>exportHandler(sortedDevices, 'Device')}>Export to CSV</button>
       <table>
         <thead>
           <tr>
