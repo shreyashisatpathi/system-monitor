@@ -3,15 +3,16 @@ import {
   selectedRecordForExport,
 } from '@/utils/exportToCSVFile';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { Checkbox, Title } from '@mantine/core';
+import { useState } from 'react';
+import { Checkbox, Title, Text, Group } from '@mantine/core';
 import { Table } from '@mantine/core';
 import styles from './DeviceList.module.css';
 import type { Device } from '@/type';
+import { tableHeaderWithIcon } from '@/utils/iconHelper';
 
 type DeviceListProps = {
   devices: Device[];
-}
+};
 const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
   if (!devices || devices.length === 0) {
     return <div>No devices available</div>;
@@ -36,6 +37,7 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
     }
   };
 
+  
   return (
     <div>
       <div className={styles.title}>
@@ -58,15 +60,14 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
           <Table.Tr>
             <Table.Th></Table.Th>
             <Table.Th onClick={() => sortDevices('ipv4')}>
-              IPv4 Address
+              {tableHeaderWithIcon('IPv4 Address')}
             </Table.Th>
             <Table.Th onClick={() => sortDevices('hostname')}>
-              Hostname
+              {tableHeaderWithIcon('Host name')}
             </Table.Th>
             <Table.Th onClick={() => sortDevices('operatingSystem')}>
-              Operating System
+              {tableHeaderWithIcon('Operating System')}
             </Table.Th>
-
             <Table.Th>Details</Table.Th>
           </Table.Tr>
         </Table.Thead>
