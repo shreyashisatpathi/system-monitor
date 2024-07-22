@@ -58,7 +58,6 @@ const escapeCsvValue = (value: any): string => {
 
 const convertJSONToCSV = (items: any) => {
   const flattenedItem = items.map((item: any) => deepFlattenToObject(item));
-  console.log(flattenedItem);
   const csvRows = [];
   const keys = Object.keys(flattenedItem[0]);
   csvRows.push(keys.join(','));
@@ -80,7 +79,6 @@ const handleDownloadReports = (csvData: string, reportType: string) => {
   const blob = new Blob([csvData], { type: 'text/csv' });
   //creates a URL from the blob object
   const urlObj = window.URL.createObjectURL(blob);
-  console.log(urlObj);
   const link = document.createElement('a');
   //Creating an anchor tag to download the urlObj
   //example: <a href={urlObj} download="device.csv">

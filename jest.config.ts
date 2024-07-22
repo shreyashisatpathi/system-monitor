@@ -14,7 +14,7 @@ const config: Config = {
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1', // Adjust the alias mapping as per your tsconfig.json
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 }
  

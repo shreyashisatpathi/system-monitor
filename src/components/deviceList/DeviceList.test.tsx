@@ -60,7 +60,7 @@ describe('DeviceList Component', () => {
     );
     fireEvent.click(screen.getByText('Host name'));
     const sortedHostnames = screen.getAllByRole('cell').map((cell) => cell.textContent);
-    console.log(sortedHostnames)
+
     expect(sortedHostnames).toEqual( [
       '',             '192.168.1.1',
       'device1',      'Windows',
