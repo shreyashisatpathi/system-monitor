@@ -37,7 +37,6 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
     }
   };
 
-  
   return (
     <div>
       <div className={styles.title}>
