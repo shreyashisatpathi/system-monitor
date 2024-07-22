@@ -15,7 +15,7 @@ const DeviceDetails: React.FC<DeviceDetailsProps> = ({
   }
   return (
     <div>
-      <p>Hostname{device.hostname}</p>
+      <p>Hostname: {device.hostname}</p>
       <p>IPv4 Address: {device.ipv4}</p>
       <p>Operating System: {device.operatingSystem}</p>
       <p>MAC Address: {device.macAddress}</p>

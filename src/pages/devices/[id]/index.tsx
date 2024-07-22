@@ -1,4 +1,4 @@
-import DeviceDetails from '@/components/deviceDetails/Device';
+import DeviceDetails from '@/components/deviceDetails/DeviceDetails';
 import { Device } from '@/type';
 import { GetServerSideProps } from 'next';
 
