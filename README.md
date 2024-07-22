@@ -1,6 +1,7 @@
 
 ## System Monitor Dashboard 
 In this web application SampleCompany will be able to see all the devices and the corresponding vulnerabilities
+![Screenshot from 2024-07-22 20-06-09](https://github.com/user-attachments/assets/bd857b7a-50c3-4f88-9fa1-306189f5c418)
 
 To run this application locally
 
