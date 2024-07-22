@@ -1,3 +1,17 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "eslint:recommended"
+  ],
+  "plugins": ["react-hooks"],
+  "rules": {
+    // Add any specific rules you need here
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
