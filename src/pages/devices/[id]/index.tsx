@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   const deviceResponse = await fetch(
-    `http://localhost:8080/devices/${params.id}`
+    `${process.env.DEVICE_MONITOR_SERVER_URL}/devices/${params.id}`
   );
 
   if (!deviceResponse.ok) {
@@ -35,9 +35,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     );
   }
   const device: Device[] = await deviceResponse.json();
-
+console.log(process.env.DEVICE_MONITOR_SERVER_URL)
   const vulnerabilitiesResponse = await fetch(
-    `http://localhost:8080/devices/${params.id}/vulnerabilities`
+    `${process.env.DEVICE_MONITOR_SERVER_URL}/devices/${params.id}/vulnerabilities`
   );
 
   if (!vulnerabilitiesResponse.ok) {

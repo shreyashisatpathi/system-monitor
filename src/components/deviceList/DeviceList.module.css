@@ -1,7 +1,8 @@
 .title {
-    text-align: center;
+  text-align: center;
 }
 
 .exportBtn {
-    float: right;
+  float: right;
+  padding-right: 50px;
 }

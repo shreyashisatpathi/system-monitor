@@ -25,7 +25,7 @@ const Home: React.FC<DevicesProps> = ({ devices }) => {
 export const getServerSideProps = async () => {
   let devices = [];
   try {
-    const response = await fetch('http://localhost:8080/devices');
+    const response = await fetch(`${process.env.DEVICE_MONITOR_SERVER_URL}/devices`);
     devices = await response.json();
     return {
       props: {
