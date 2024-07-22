@@ -1,4 +1,4 @@
-import { exportHandler } from '@/utils/exportToCSVFile';
+import { exportHandler, selectedRecordForExport } from '@/utils/exportToCSVFile';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Checkbox } from '@mantine/core';
@@ -18,7 +18,7 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
   }
 
   const [sortedDevices, setSortedDevices] = useState<Device[]>(devices);
-  const [checked, setChecked] = useState<String[]>([]);
+  const [checked, setChecked] = useState<string[]>([]);
   const sortDevices = (key: keyof Device) => {
     const sortedDevices = [...devices].sort((a, b) => {
       if (a[key] < b[key]) return -1;
@@ -36,19 +36,11 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
     }
   };
 
-  const seletedDevices = () => {
-    const checkedDevices = sortedDevices.filter((device) =>
-      checked.includes(device.oid)
-    );
-
-    //If any device row is checked only export that one, otherwise export all devices in sorted order
-    return checked.length > 0 ? checkedDevices : sortedDevices;
-  };
-
+ 
   return (
     <div>
       <h1>Device List</h1>
-      <button onClick={() => exportHandler(seletedDevices(), 'Device')}>
+      <button onClick={() => exportHandler(selectedRecordForExport(sortedDevices, checked), 'Device')}>
         Export to CSV
       </button>
       <table>

@@ -1,3 +1,5 @@
+import type { Device, Vulnerability } from "@/type";
+
 const flattenObject = (obj: any, parent: string = '', res: any = {}): any => {
     for (let key in obj) {
       const propName = parent ? `${parent}.${key}` : key;
@@ -68,5 +70,14 @@ export const exportHandler =(items:any, reportType: string)=>{
     const csvData = convertJSONToCSV(items)
     handleDownloadReports(csvData, reportType) 
 }
+
+export const selectedRecordForExport = <T extends { oid: string }>(allRecords: T[], checkedList: string[]): T[] => {
+  const checkedRecords = allRecords.filter((record : T) =>
+    checkedList.includes(record.oid)
+  );
+
+  //If any device row is checked only export that one, otherwise export all devices in sorted order
+  return checkedList.length > 0 ? checkedRecords : allRecords;
+};
 
 
