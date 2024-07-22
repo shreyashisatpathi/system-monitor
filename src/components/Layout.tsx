@@ -7,7 +7,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div>
       <AppShell
-        header={{ height: 60 }}
+        header={{ height: 30 }}
         navbar={{
           width: 300,
           breakpoint: 'sm'
@@ -19,7 +19,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
             <Link href="/">Home</Link>
           </Group>
         </AppShell.Header>
-        <main>{children}</main>
+        <AppShell.Main pl={0}>{children}</AppShell.Main>
       </AppShell>
     </div>
   );

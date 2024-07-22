@@ -1,16 +1,15 @@
-import { exportHandler, selectedRecordForExport } from '@/utils/exportToCSVFile';
+import {
+  exportHandler,
+  selectedRecordForExport,
+} from '@/utils/exportToCSVFile';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Checkbox } from '@mantine/core';
+import { Checkbox, Title } from '@mantine/core';
 import { Table } from '@mantine/core';
-interface Device {
-  oid: string;
-  ipv4: string;
-  hostname: string;
-  operatingSystem: string;
-  manufacturer: string;
-}
-interface DeviceListProps {
+import styles from './DeviceList.module.css';
+import type { Device } from '@/type';
+
+type DeviceListProps = {
   devices: Device[];
 }
 const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
@@ -37,19 +36,33 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
     }
   };
 
- 
   return (
     <div>
-      <h1>Device List</h1>
-      <button onClick={() => exportHandler(selectedRecordForExport(sortedDevices, checked), 'Device')}>
-        Export to CSV
-      </button>
+      <div className={styles.title}>
+        <Title order={3}>Device List</Title>
+      </div>
+      <div className={styles.exportBtn}>
+        <button
+          onClick={() =>
+            exportHandler(
+              selectedRecordForExport(sortedDevices, checked),
+              'Device'
+            )
+          }
+        >
+          Export to CSV
+        </button>
+      </div>
       <Table>
         <Table.Thead>
           <Table.Tr>
             <Table.Th></Table.Th>
-            <Table.Th onClick={() => sortDevices('ipv4')}>IPv4 Address</Table.Th>
-            <Table.Th onClick={() => sortDevices('hostname')}>Hostname</Table.Th>
+            <Table.Th onClick={() => sortDevices('ipv4')}>
+              IPv4 Address
+            </Table.Th>
+            <Table.Th onClick={() => sortDevices('hostname')}>
+              Hostname
+            </Table.Th>
             <Table.Th onClick={() => sortDevices('operatingSystem')}>
               Operating System
             </Table.Th>
