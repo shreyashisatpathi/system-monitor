@@ -1,7 +1,7 @@
 import type { Device, Vulnerability } from '@/type';
 import VulnerabilityList from '../vulnerabilityList/VulnerabilityList';
-import { Text, Paper, Title } from '@mantine/core';
-import style from './DeviceDetails.module.css'
+import { Text, Paper, Container, List } from '@mantine/core';
+import style from './DeviceDetails.module.css';
 interface DeviceDetailsProps {
   device: Device;
   vulnerabilities: Vulnerability[];
@@ -16,22 +16,23 @@ const DeviceDetails: React.FC<DeviceDetailsProps> = ({
 
   return (
     <div className={style.container}>
-      
       <Paper shadow="md" p="xs" radius="md">
-        <Title order={4}>Device Details </Title>
-        <p>Hostname: {device.hostname}</p>
-        <p>IPv4 Address: {device.ipv4}</p>
-        <p>Operating System: {device.operatingSystem}</p>
-        <p>MAC Address: {device.macAddress}</p>
-        <p>IPv6 Address: {device.ipv6}</p>
-        <h3>Open Ports</h3>
-        <ul>
+        <Container fluid h={30} bg="var(--mantine-color-blue-light)">
+          Device Details
+        </Container>
+        <Text>Hostname: {device.hostname}</Text>
+        <Text>IPv4 Address: {device.ipv4}</Text>
+        <Text>Operating System: {device.operatingSystem}</Text>
+        <Text>MAC Address: {device.macAddress}</Text>
+        <Text>IPv6 Address: {device.ipv6}</Text>
+        <Text>Open Ports:</Text>
+        <List>
           {device.openPorts.map((port) => (
-            <li key={port.number}>
-              {port.number} ({port.protocol})
-            </li>
+            <List.Item key={port.number}>
+              Port number: {port.number}; Protocol: {port.protocol}
+            </List.Item>
           ))}
-        </ul>
+        </List>
       </Paper>
       <VulnerabilityList vulnerabilities={vulnerabilities} />
     </div>
