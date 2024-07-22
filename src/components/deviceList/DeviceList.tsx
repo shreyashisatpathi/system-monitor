@@ -2,6 +2,7 @@ import { exportHandler, selectedRecordForExport } from '@/utils/exportToCSVFile'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Checkbox } from '@mantine/core';
+import { Table } from '@mantine/core';
 interface Device {
   oid: string;
   ipv4: string;
@@ -43,38 +44,38 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices }) => {
       <button onClick={() => exportHandler(selectedRecordForExport(sortedDevices, checked), 'Device')}>
         Export to CSV
       </button>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th onClick={() => sortDevices('ipv4')}>IPv4 Address</th>
-            <th onClick={() => sortDevices('hostname')}>Hostname</th>
-            <th onClick={() => sortDevices('operatingSystem')}>
+      <Table>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th></Table.Th>
+            <Table.Th onClick={() => sortDevices('ipv4')}>IPv4 Address</Table.Th>
+            <Table.Th onClick={() => sortDevices('hostname')}>Hostname</Table.Th>
+            <Table.Th onClick={() => sortDevices('operatingSystem')}>
               Operating System
-            </th>
+            </Table.Th>
 
-            <th>Details</th>
-          </tr>
-        </thead>
+            <Table.Th>Details</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
         <tbody>
           {sortedDevices.map((device) => (
-            <tr key={device.oid}>
-              <td>
+            <Table.Tr key={device.oid}>
+              <Table.Td>
                 <Checkbox
                   checked={checked.includes(device.oid)}
                   onChange={() => toggleCheckBoxHandler(device.oid)}
                 />
-              </td>
-              <td>{device.ipv4}</td>
-              <td>{device.hostname}</td>
-              <td>{device.operatingSystem}</td>
-              <td>
+              </Table.Td>
+              <Table.Td>{device.ipv4}</Table.Td>
+              <Table.Td>{device.hostname}</Table.Td>
+              <Table.Td>{device.operatingSystem}</Table.Td>
+              <Table.Td>
                 <Link href={`/devices/${device.oid}`}>View Details</Link>
-              </td>
-            </tr>
+              </Table.Td>
+            </Table.Tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };
